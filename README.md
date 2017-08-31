@@ -22,7 +22,9 @@ This means that the socket message should contain the following stuff:
 
 - **socket.io** code is currently commented out on ``sound.js``. why? because it throws annoying errors when it doesn't detect a socket connection, which we would have since we'll serve all files with node.js.
 
-  
+- I find the ``Tone.PluckSynth`` really annoying, so if we don't need 3 synths, I would get rid of it.
+
+
 --
 
 ☮️ + 💟
