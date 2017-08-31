@@ -1,6 +1,6 @@
 # Making Music With Online Data Workshop
-Or Fleisher + Dror Ayalon
 
+![Making Music With Online Data Workshop](images/poster/poster.png)
 
 ### so, what's up?
 - run stuff by loading ``index.html`` and running the test function on the console:
