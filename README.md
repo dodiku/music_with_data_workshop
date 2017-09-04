@@ -1,6 +1,6 @@
 # Making Music With Online Data Workshop
 
-![Making Music With Online Data Workshop](images/poster/postersmall.png)
+![Making Music With Online Data Workshop](public/images/poster/postersmall.png)
 
 ### so, what's up?
 - run stuff by loading ``index.html`` and running the test function on the console:
