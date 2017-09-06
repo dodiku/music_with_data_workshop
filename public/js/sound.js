@@ -116,12 +116,12 @@ function triggerNote(type, tweet){
 /*****************************
 Socket.io client side
 *****************************/
-// var socket = io();
-//
-// socket.on('ragular', function(data){
-//   triggerNote('regular', data);
-// });
-//
+var socket = io();
+
+socket.on('thefutureofstorytelling', function(tweet){
+  triggerNote('regular', tweet);
+});
+
 // socket.on('rare', function(data){
 //   triggerNote('rare', data);
 // });
