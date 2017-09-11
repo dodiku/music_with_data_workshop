@@ -46,7 +46,7 @@ io.on('connection', function (client) {
 
 //Let's define a couple of constrains
 var NYC = [ '-73.98', '40.85', '-73.87', '40.69' ];
-var filters = 'holiday rest';
+var filters = 'creative';
 
 var stream = TwitterAPI.stream('statuses/filter', {track: filters}, {locations: NYC});
 
@@ -54,10 +54,10 @@ var stream = TwitterAPI.stream('statuses/filter', {track: filters}, {locations: 
 stream.on('tweet', function(tweet){
 
     //Show us the text
-    console.log(tweet.text); // Get rid of text to see all the stuff that Twitter gives us - GET CREATIVE WITH IT!
+    console.log(tweet.text + '\n'); // Get rid of text to see all the stuff that Twitter gives us - GET CREATIVE WITH IT!
 
     //This sends everybody connected and not just a uniqe socket - GOOD FOR BOLD ANNOUNCEMENTS!
-    io.sockets.emit('thefutureofstorytelling', tweet.text);
+    io.sockets.emit('note', tweet.text, tweet.user.screen_name, tweet.user.followers_count);
 
 });
 

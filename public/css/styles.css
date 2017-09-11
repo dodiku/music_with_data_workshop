@@ -26,8 +26,10 @@ html {
   /*margin-top: 120px;*/
   background-color: DEEPSKYBLUE;
   color: WHITE;
-  border-radius: 8px;
+  border-radius: 80px;
   padding: 2px;
+  padding-right: 16px;
+  padding-left: 16px;
   opacity: 1; /* should range between 0 and 1 */
   position: fixed;
   /*top: 30vh; /* should range between 0 and 40 */*/

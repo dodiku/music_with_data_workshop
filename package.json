@@ -1,18 +1,22 @@
 {
-  "name": "music_with_data_workshop-master",
-  "version": "0.0.1",
-  "description": "![Making Music With Online Data Workshop](images/poster/postersmall.png)",
-  "main": "server.js",
-  "scripts": {
-    "start": "node server.js"
-  },
-  "author": "",
-  "license": "MIT",
-  "dependencies": {
-    "ejs": "^2.5.7",
-    "express": "^4.15.4",
-    "http": "0.0.0",
-    "socket.io": "^2.0.3",
-    "twit": "^2.2.9"
-  }
+    "name": "music_with_data_workshop-master",
+    "version": "0.0.1",
+    "description": "![Making Music With Online Data Workshop](images/poster/postersmall.png)",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js"
+    },
+    "repository" : { 
+    "type" : "git", 
+    "url" : "https://github.com/dodiku/music_with_data_workshop.git"
+    },
+    "author": "Or Fleisher <contact@orfleisher.com> & Dror Ayalon <d.stamail@gmail.com>",
+    "license": "MIT",
+    "dependencies": {
+        "ejs": "^2.5.7",
+        "express": "^4.15.4",
+        "http": "0.0.0",
+        "socket.io": "^2.0.3",
+        "twit": "^2.2.9"
+    }
 }

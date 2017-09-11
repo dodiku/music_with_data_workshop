@@ -2,25 +2,27 @@
 /*****************************
 Tone.js synths
 *****************************/
-var synthOne = new Tone.PluckSynth({
-  attackNoise: 1,
-  dampening: 1500,
-  resonance: 0.99,
-}).toMaster();
+var OSCGainStage = new Tone.Gain(0.7).toMaster();
+//
+// var synthOne = new Tone.PluckSynth({
+//   attackNoise: 1,
+//   dampening: 1500,
+//   resonance: 0.99,
+// }).toMaster();
 
 
-var synthTwo = new Tone.Synth({
+var synthOne = new Tone.Synth({
 	'oscillator.type' : 'square8',
   'envelope' : {
   	attack : 0.001,
     decay : 2,
     sustain : 0
   }
-}).toMaster();
+}).connect(OSCGainStage);
 
 
-var synthThree = new Tone.MonoSynth({
-  'detune' : 10,
+var synthTwo = new Tone.MonoSynth({
+  // 'detune' : 10,
 	'oscillator' : {
   	type : "fatsawtooth4",
   },
@@ -30,8 +32,8 @@ var synthThree = new Tone.MonoSynth({
 	'envelope' : {
   	attack : 2,
     decay : 1,
-    sustain : 1,
-    release : 10
+    sustain : 4,
+    release : 16
   },
   'filterEnvelope':{
     attack : 2,
@@ -42,14 +44,12 @@ var synthThree = new Tone.MonoSynth({
     octaves:2,
     exponent:4,
 },
-}).toMaster();
-
+}).connect(OSCGainStage);
 
 /*****************************
 Array of notes of the pentatonic scale
 *****************************/
-var notes = ['G2', 'A2', 'B2', 'D3', 'E3', 'G3'];
-
+var notes = ['A2', 'C2', 'D2', 'E2', 'G2'];
 
 
 /*****************************
@@ -76,22 +76,25 @@ function triggerNote(type, tweet){
   tweetHtml = tweetHtml.replace('#thishashtag', '<span id="hashtag">#thishashtag</span>');
 
   // getting note randomally
-  var note = notes[Math.floor(Math.random()*notes.length)];
+  var note = notes[Math.round(Math.random()*notes.length - 1)];
+  console.log(note);
 
   // playing the note
   // using 'regular' synth
-  if (type === 'regular') {
+  if (type === 'high') {
 
-    // choosing regular synth randomally
-    if (Math.round(Math.random()) === 0) {
-      synthOne.triggerAttackRelease(note, 0.5);
-    } else {
-      synthTwo.triggerAttackRelease(note, 0.5);
-    }
+    synthOne.triggerAttackRelease(note, 0.5);
+    //
+    // // choosing regular synth randomally
+    // if (Math.round(Math.random()) === 0) {
+
+    // } else {
+    //   synthTwo.triggerAttackRelease(note, 0.5);
+    // }
 
   // using 'rare' synth
   } else {
-    synthThree.triggerAttackRelease(note, 5);
+    synthTwo.triggerAttackRelease(note, 5);
   }
 
   // adding the tweet to the page
@@ -100,12 +103,11 @@ function triggerNote(type, tweet){
   // making tweet disappear gradually
   var id = '#' + tweetCount;
 
-  setTimeout(function(){
-    $(id).css({
-      transition: 'opacity 6s',
+    $(id).delay(500).animate({
       'opacity': 0
+    }, 4000, function(){
+      $(id).remove();
     });
-  }, 500);
 
 
   // incrementing tweetCount
@@ -118,8 +120,20 @@ Socket.io client side
 *****************************/
 var socket = io();
 
-socket.on('thefutureofstorytelling', function(tweet){
-  triggerNote('regular', tweet);
+socket.on('note', function(tweetText, userHandle, freindsCount){
+  // console.log(tweetText, userHandle, freindsCount);
+  // creating tweet test
+  var tweetWtihHandle = '@' + userHandle + ': ' + tweetText;
+  // triggerNote('low', tweet);
+  if (freindsCount >= 100) {
+    triggerNote('high', tweetWtihHandle);
+  } else {
+    triggerNote('low', tweetWtihHandle);
+  }
+});
+
+socket.on('highNote', function(tweet){
+  triggerNote('low', tweet);
 });
 
 // socket.on('rare', function(data){
@@ -136,7 +150,7 @@ function test(){
 
   var tweet = '@handlename: this is a tweet by this guy that contains 140 characters about so much shit squeezed in one little tweet with #thishashtag and #thisone too!';
   if (Math.round(Math.random()) === 0) {
-    triggerNote('regular', tweet);
+    triggerNote('rare', tweet);
   } else {
     triggerNote('rare', tweet);
   }

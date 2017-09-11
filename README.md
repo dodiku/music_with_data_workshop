@@ -28,3 +28,5 @@ This means that the socket message should contain the following stuff:
 --
 
 ☮️ + 💟
+
+- 
