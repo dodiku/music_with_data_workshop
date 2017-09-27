@@ -2,31 +2,20 @@
 
 ![Making Music With Online Data Workshop](public/images/poster/postersmall.png)
 
-### so, what's up?
-- run stuff by loading ``index.html`` and running the test function on the console:
-```javascript
-test()
-```
+### Preparations
+- Please clone the [template repository](https://github.com/dodiku/music_with_data_workshop_template).  
+``$ git clone https://github.com/dodiku/music_with_data_workshop_template.git ``
 
-- In general, the function ``triggerNote(type, tweet)`` is being called for every socket.io message.  
-This means that the socket message should contain the following stuff:
-  - **type (string)**: The type of tweet - 'regular' or 'rare'. Maybe based on different hashtags.
-  - **tweet (string)**: The raw text of the tweet.
+### Stack and installations
+Client side:
+- [Tone.js](https://tonejs.github.io/)
+- [socket.io](https://socket.io/) (client)
 
-- I tried to make the code as simple as possible. Even though it's not too long, I'm sure we can make this code even simpler for a workshop setup.
+Server side:
+- [node.js](https://nodejs.org/en/)
+- [express.js](https://expressjs.com/)
+- [socket.io](https://www.npmjs.com/package/socket.io) (server - npm)
+- [twit](https://www.npmjs.com/package/twit) (npm)
 
-### things to keep in mind
-- ``Tone.min.js``, ``Tone.min.js``, ``socket.io.min.js`` were added as files. If we want to serve them from a CDN, we'll need to update ``index.html``.
-
-- When we integrate node.js, we'll probably want to move ``styles.css`` to ``public/css`` directory, ``index.html`` to ``views/``, etc. Again, we'll need to update ``index.html``.
-
-- **socket.io** code is currently commented out on ``sound.js``. why? because it throws annoying errors when it doesn't detect a socket connection, which we would have since we'll serve all files with node.js.
-
-- I find the ``Tone.PluckSynth`` really annoying, so if we don't need 3 synths, I would get rid of it.
-
-
---
-
-☮️ + 💟
-
-- 
+### Computer music tools libraries and tutorials
+- https://github.com/juniorxsound/Interactive-Music

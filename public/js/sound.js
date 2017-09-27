@@ -3,17 +3,13 @@
 Tone.js synths
 *****************************/
 var OSCGainStage = new Tone.Gain(0.7).toMaster();
-//
-// var synthOne = new Tone.PluckSynth({
-//   attackNoise: 1,
-//   dampening: 1500,
-//   resonance: 0.99,
-// }).toMaster();
 
 
 var synthOne = new Tone.Synth({
-	'oscillator.type' : 'square8',
-  'envelope' : {
+	oscillator:{
+		type : 'square8'
+	},
+  envelope: {
   	attack : 0.001,
     decay : 2,
     sustain : 0
@@ -22,20 +18,19 @@ var synthOne = new Tone.Synth({
 
 
 var synthTwo = new Tone.MonoSynth({
-  // 'detune' : 10,
-	'oscillator' : {
+	oscillator: {
   	type : "fatsawtooth4",
   },
-  'filter' : {
+  filter: {
     type:"peaking",
   },
-	'envelope' : {
+	envelope: {
   	attack : 2,
     decay : 1,
     sustain : 4,
     release : 16
   },
-  'filterEnvelope':{
+  filterEnvelope:{
     attack : 2,
     decay : 1,
     sustain : 1,
@@ -84,13 +79,6 @@ function triggerNote(type, tweet){
   if (type === 'high') {
 
     synthOne.triggerAttackRelease(note, 0.5);
-    //
-    // // choosing regular synth randomally
-    // if (Math.round(Math.random()) === 0) {
-
-    // } else {
-    //   synthTwo.triggerAttackRelease(note, 0.5);
-    // }
 
   // using 'rare' synth
   } else {
@@ -121,10 +109,8 @@ Socket.io client side
 var socket = io();
 
 socket.on('note', function(tweetText, userHandle, freindsCount){
-  // console.log(tweetText, userHandle, freindsCount);
-  // creating tweet test
   var tweetWtihHandle = '@' + userHandle + ': ' + tweetText;
-  // triggerNote('low', tweet);
+
   if (freindsCount >= 100) {
     triggerNote('high', tweetWtihHandle);
   } else {
@@ -135,10 +121,6 @@ socket.on('note', function(tweetText, userHandle, freindsCount){
 socket.on('highNote', function(tweet){
   triggerNote('low', tweet);
 });
-
-// socket.on('rare', function(data){
-//   triggerNote('rare', data);
-// });
 
 
 /*****************************

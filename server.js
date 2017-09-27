@@ -1,4 +1,4 @@
-'use strict'
+'use strict;';
 
 //Express
 var express = require('express');
@@ -40,18 +40,20 @@ app.set('view-engine', 'html');
 app.use(express.static(__dirname + '/public'));
 
 //Socket messages
-io.on('connection', function (client) {
-    //We don't really need this one since we will be emitting messages from the server but this is the pattern for building socket communication using Socket.io
-});
-
 //Let's define a couple of constrains
 var NYC = [ '-73.98', '40.85', '-73.87', '40.69' ];
 var filters = 'creative';
 
-var stream = TwitterAPI.stream('statuses/filter', {track: filters}, {locations: NYC});
+var tweetStream = TwitterAPI.stream('statuses/filter', {track: filters}, {locations: NYC});
+
+
+io.on('connection', function (client) {
+    //We don't really need this one since we will be emitting messages from the server but this is the pattern for building socket communication using Socket.io
+    console.log('user is connected:' + client.id);
+});
 
 //Register what happens when we get a new twitt
-stream.on('tweet', function(tweet){
+tweetStream.on('tweet', function(tweet){
 
     //Show us the text
     console.log(tweet.text + '\n'); // Get rid of text to see all the stuff that Twitter gives us - GET CREATIVE WITH IT!
