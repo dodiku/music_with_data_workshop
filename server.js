@@ -22,10 +22,10 @@ var ejs = require('ejs');
 var Twit = require('twit');
 
 var TwitterAPI = new Twit({
-    consumer_key: '9Td3nxDzi8VnoEADiwdNiI1VJ',
-    consumer_secret: 'l5wz1aiPisOnkis846nM1t7zlRqmSnukLuLnsg2EZTDczqKw6L',
-    access_token: '156587257-rMpyBUTPlMIBhH5k8aAbZKd16LPNmQ8mWWNmeNNd',
-    access_token_secret: 'N4lz1uqzdwIDpLxnymTJYYwrLyG87FRnJaqJHBQMUpFz3',
+    consumer_key: 'your_consumer_key',
+    consumer_secret: 'your_consumer_secret',
+    access_token: 'your_access_token',
+    access_token_secret: 'your_access_token_secret',
     timeout_ms: 60 * 1000, // optional HTTP request timeout to apply to all requests.
 });
 
