@@ -6,9 +6,9 @@
     "scripts": {
         "start": "node server.js"
     },
-    "repository" : { 
-    "type" : "git", 
-    "url" : "https://github.com/dodiku/music_with_data_workshop.git"
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/dodiku/music_with_data_workshop.git"
     },
     "author": "Or Fleisher <contact@orfleisher.com> & Dror Ayalon <d.stamail@gmail.com>",
     "license": "MIT",

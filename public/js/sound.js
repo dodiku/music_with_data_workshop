@@ -41,6 +41,9 @@ var synthTwo = new Tone.MonoSynth({
 },
 }).connect(OSCGainStage);
 
+//Let's hijack the text to speech API in our Mac
+var speaker = window.speechSynthesis;
+
 /*****************************
 Array of notes of the pentatonic scale
 *****************************/
@@ -71,7 +74,7 @@ function triggerNote(type, tweet){
   tweetHtml = tweetHtml.replace('#thishashtag', '<span id="hashtag">#thishashtag</span>');
 
   // getting note randomally
-  var note = notes[Math.round(Math.random()*notes.length - 1)];
+  var note = notes[Math.min(Math.max((Math.round(Math.random()*notes.length - 1)), 0), notes.length - 1)];
   console.log(note);
 
   // playing the note
@@ -111,6 +114,10 @@ var socket = io();
 socket.on('note', function(tweetText, userHandle, freindsCount){
   var tweetWtihHandle = '@' + userHandle + ': ' + tweetText;
 
+	//Make the robot sing!
+	var utterThis = new SpeechSynthesisUtterance(tweetText);
+	speaker.speak(utterThis);
+	
   if (freindsCount >= 100) {
     triggerNote('high', tweetWtihHandle);
   } else {

@@ -59,7 +59,7 @@ tweetStream.on('tweet', function(tweet){
     console.log(tweet.text + '\n'); // Get rid of text to see all the stuff that Twitter gives us - GET CREATIVE WITH IT!
 
     //This sends everybody connected and not just a uniqe socket - GOOD FOR BOLD ANNOUNCEMENTS!
-    io.sockets.emit('note', tweet.text, tweet.user.screen_name, tweet.user.followers_count);
+    // io.sockets.emit('note', tweet.text, tweet.user.screen_name, tweet.user.followers_count);
 
 });
 
